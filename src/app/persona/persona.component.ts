@@ -1,27 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonaService } from '../servicio/persona.service'
-import {FormsModule}from '@angular/forms' 
 @Component({
   selector: 'app-persona',
   templateUrl: './persona.component.html',
   styleUrls: ['./persona.component.css']
+  
 })
 export class PersonaComponent implements OnInit {
   
-  agregarPersonaRegistro: any={Nombre:'', Apellido:'', Edad:''};
+  agregarPersonaRegistro: any={
+    name:'',
+    height:'',
+    mass:'',
+    hair_color:'',
+    skin_color:'',
+    eye_color:'',
+    birth_year:'',
+    gender:'',
+    homeworld:'',
+    films:[],
+    species:[],
+    vehicles:[],
+    starships:[],
+    created:'',
+    edited:'',
+    url:'',};
   personas:any;
-  constructor(private personaService:PersonaService) { }
+  persona:any;
+  identificador:Text;
+  constructor(private personaService:PersonaService) 
+  { 
+    this.personaService.obtenerTodasLasPersonas().subscribe(resultado=>{
+      this.personas=resultado.results;
+    },
+      error=>{
+          console.log(JSON.stringify(error));
+      });
+  }
   ngOnInit() {
   }
 
 
-  eliminarPersona(identificador:number)
+  consultarUnica()
   {
-    console.log("Eliminar");
+    this.personaService.consultarUnica(this.identificador).subscribe(resultado=>{
+      this.persona=resultado;
+      console.log("Nombre:  "+this.persona.name+"  creado:  "+this.persona.created );
+    },
+      error=>{
+          console.log(JSON.stringify(error));
+      });
   }
-  agregarPersona(identificador:number)
-  {
-    console.log("Agregando: Nombre:"+this.agregarPersonaRegistro.Nombre+"  "+this.agregarPersonaRegistro.Apellido+"  de  "+this.agregarPersonaRegistro.Edad+"  años de edad");
-  }
+  
 
 }

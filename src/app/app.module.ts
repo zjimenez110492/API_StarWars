@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
     PersonaComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, Observable, HttpClient, HttpHeaders
+    BrowserModule, HttpClientModule, FormsModule
   ],
   providers: [PersonaService],
   bootstrap: [AppComponent]

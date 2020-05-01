@@ -12,16 +12,23 @@ export class PersonaService {
   
   obtenerTodasLasPersonas():Observable<any>
   {
-    return this.httpClient.get("http://localhost:4200/persona");
+    let respuesta = this.httpClient.get("/api/people");
+    //console.log(respuesta); 
+    return this.httpClient.get("/api/people");
   }
+  /*  
   agregarPersona(persona:any)
   {
       let json= JSON.stringify(persona);
       let headers = new HttpHeaders().set('Content-Type','application/json');
       return this.httpClient.post("http://localhost:4200/persona",json,{headers:headers});
-  }
-  eliminarPersona(identificador):Observable<any>
+    
+  */
+  
+  consultarUnica(identificador):Observable<any>
   {
-  return this.httpClient.delete("http://localhost:4200/persona/"+identificador);
+    let respuesta=this.httpClient.get("/api/people/"+identificador+"/");
+    //console.log(JSON.stringify(respuesta));
+  return this.httpClient.get("/api/people/"+identificador+"/");
   }
 }

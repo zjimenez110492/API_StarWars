@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <h1>Prueba del modulo HTTP</h1>
+
+<input type="text" [(ngModel)]="identificador">
+<button (click)="consultarUnica()" class="btn btn-primary">Consultar Persona Unica</button>
 <div class="row"> 
     
     <div class="col-8">
         <table class="table table-striped">            
             <thead>
                 
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Profesional</th>
-                <th>*</th>
+                <th>Name</th>
+                <th>Height</th>
+                <th>Mass</th>
+                <th>Hair Color</th>
+                <th>Skin Color</th>
+                <th>Eye Color</th>
+                <th>Birth Year</th>
+                <th>Gender</th>
+                <th>Home World</th>
+                <th>Films</th>
+                <th>Species</th>
+                <th>Vehicles</th>
+                <th>Star Ships</th>
+                <th>Created</th>
+                <th>Edited</th>
+                <th>Url</th>
             </thead>            
             <tbody>
                 <tr *ngFor="let item of personas">
                     
-                    <td>{{item._id}}</td>
-                    <td>{{item.Nombre}}</td>
-                    <td>{{item.Apellido}}</td>
-                    <td>{{item.Edad}}</td>
-                    <td>{{item.isProfesional}}</td>
-                    <td>
-                        
-                        <button (click)="eliminarPersona(item._id)" class="btn btn-primary">Eliminar</button>
+                    <td>{{item.name}}</td>
+                    <td>{{item.height}}</td>
+                    <td>{{item.hair_color}}</td>
+                    <td>{{item.skin_color}}</td>
+                    <td>{{item.eye_color}}</td>
+                    <td>{{item.birth_year}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.homeworld}}</td>
+                    <td >
+                        <ul *ngFor="let pelis of item.films">
+                            <li>Pel: {{pelis}}</li>
+                          </ul>  
                     </td>
+                    <td *ngFor="let especies of item.species">
+                        {{especies}}
+                    </td>
+                    <td *ngFor="let vehiculos of item.vehicles">
+                        {{vehiculos}}
+                    </td>
+                    <td *ngFor="let stars of item.starships">
+                        {{stars}}
+                    </td>
+                    <td>{{item.created}}</td>
+                    <td>{{item.edited}}</td>
+                    <td>{{item.url}}</td>
+         
                 </tr>
             </tbody>
         </table>
             
     </div>
-    <div class="col-4">
-        
-        <h3>Formulario</h3>
-        <div class="form-group">            
-            <label for="controlNombre">Nombre</label>
-            <input type="text" [(ngModel)]="agregarPersonaRegistro.Nombre" class="form-control" placeholder="Nombre de Persona">
-        </div>
-        <div class="form-group">            
-            <label for="controlNombre">Apellido</label>
-            <input type="text" [(ngModel)]="agregarPersonaRegistro.Apellido" class="form-control" placeholder="Apellido de Persona">
-        </div>
-        <div class="form-group">            
-            <label for="controlNombre">Edad</label>
-            <input type="text" [(ngModel)]="agregarPersonaRegistro.Edad" class="form-control" placeholder="Edad de Persona">
-        </div>
-   
-        <button (click)="agregarPersona(item._id)" class="btn btn-primary">Agregar</button>
-    </div>
 </div>
+   
